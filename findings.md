@@ -49,7 +49,7 @@ Each month, have contracting officers review the top-ranked flagged actions, sta
 
 - **Recompete windows at concentrated bureaus** (finding 2) are openings for challengers, and incumbents there should defend early.
 - **DHS, HHS and DoD have the most fragmented markets** (HHI 127–171), where a new entrant's path is widest.
-- **Plan proposal capacity for Q3–Q4**, when 40–50% of each year's dollars are obligated.
+- **Plan proposal capacity for Q3–Q4**, when 62–67% of each year's dollars are obligated (Q4 alone is 39–42%).
 
 ## Caveats
 
