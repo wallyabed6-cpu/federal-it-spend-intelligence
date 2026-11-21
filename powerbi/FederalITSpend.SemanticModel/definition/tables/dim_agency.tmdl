@@ -1,0 +1,57 @@
+table dim_agency
+	lineageTag: a0b46eba-7fda-4f9d-8d3e-281dfda77fe8
+
+	column agency_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e9eddb0-8b90-4255-802b-7429f459b699
+		summarizeBy: sum
+		sourceColumn: agency_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column agency_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 86e56b67-9824-4fc5-a4b7-c8586f17a02b
+		summarizeBy: sum
+		sourceColumn: agency_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column agency
+		dataType: string
+		lineageTag: 4091ec99-064b-4734-913f-e571a5b0a28a
+		summarizeBy: none
+		sourceColumn: agency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_agency
+		dataType: string
+		lineageTag: 6362b612-c485-4542-8bae-de2e306367bb
+		summarizeBy: none
+		sourceColumn: sub_agency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector
+		dataType: string
+		lineageTag: 2955ab29-3f9f-4776-8690-652f1169c6a6
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_agency = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_agency.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"agency_key", Int64.Type}, {"agency_code", Int64.Type}, {"agency", type text}, {"sub_agency", type text}, {"sector", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

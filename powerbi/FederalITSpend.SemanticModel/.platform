@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "FederalITSpend"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "94762045-9e0d-4871-a9be-f48c120a62c7"
+  }
+}

@@ -1,0 +1,156 @@
+table fact_awards
+	lineageTag: 5e0f5c54-d4fb-48a9-8acf-630963f187ad
+
+	column txn_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 321a5844-444a-4d1d-b661-fadd30aa5535
+		summarizeBy: sum
+		sourceColumn: txn_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column award_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fbe797d-9ae7-4eae-ad8f-c44ac513986c
+		summarizeBy: sum
+		sourceColumn: award_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 8214d505-c127-430f-ba74-3f645e999f83
+		summarizeBy: sum
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column agency_key
+		dataType: int64
+		formatString: 0
+		lineageTag: a1e3070a-0cd2-44d0-881f-27a0e3d63f3a
+		summarizeBy: sum
+		sourceColumn: agency_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendor_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 8521d7c0-d3bf-465d-a43d-41f7dbf9d185
+		summarizeBy: sum
+		sourceColumn: vendor_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column naics_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 20dbfad9-709e-412a-bf69-c352d61624ed
+		summarizeBy: sum
+		sourceColumn: naics_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		lineageTag: b76d1221-1b12-4d34-a527-c09e941c8b1b
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_type
+		dataType: string
+		lineageTag: e9fe54e0-3f4f-4e0b-b27d-5fb568b1f41c
+		summarizeBy: none
+		sourceColumn: action_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column extent_competed
+		dataType: string
+		lineageTag: 3784f525-7b6b-4ed1-8e95-6b51b2c8f48d
+		summarizeBy: none
+		sourceColumn: extent_competed
+
+		annotation SummarizationSetBy = Automatic
+
+	column obligation
+		dataType: double
+		lineageTag: 66e25278-4b08-4aa1-9811-8ff382e086b0
+		summarizeBy: sum
+		sourceColumn: obligation
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_new_award
+		dataType: int64
+		formatString: 0
+		lineageTag: c3e13c23-5439-402c-b891-863ebef301cb
+		summarizeBy: sum
+		sourceColumn: is_new_award
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_deobligation
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a9fd138-0471-4230-af91-3bdd8a2ba84e
+		summarizeBy: sum
+		sourceColumn: is_deobligation
+
+		annotation SummarizationSetBy = Automatic
+
+	column partial_period
+		dataType: int64
+		formatString: 0
+		lineageTag: e768918b-6ca2-48ba-a660-6f618441401d
+		summarizeBy: sum
+		sourceColumn: partial_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_anomaly
+		dataType: int64
+		formatString: 0
+		lineageTag: 6499e120-dc72-4411-acba-2ab218c8cf0d
+		summarizeBy: sum
+		sourceColumn: is_anomaly
+
+		annotation SummarizationSetBy = Automatic
+
+	column anomaly_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e1108d3-e2c8-4d9b-9bae-4361c259ddcd
+		summarizeBy: sum
+		sourceColumn: anomaly_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column why_flagged
+		dataType: string
+		lineageTag: f14e4294-9deb-488d-924d-c7bd8fced57d
+		summarizeBy: none
+		sourceColumn: why_flagged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_awards = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\fact_awards.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"txn_id", Int64.Type}, {"award_id", Int64.Type}, {"date_key", Int64.Type}, {"agency_key", Int64.Type}, {"vendor_key", Int64.Type}, {"naics_code", Int64.Type}, {"state_code", type text}, {"action_type", type text}, {"extent_competed", type text}, {"obligation", type number}, {"is_new_award", Int64.Type}, {"is_deobligation", Int64.Type}, {"partial_period", Int64.Type}, {"is_anomaly", Int64.Type}, {"anomaly_rank", Int64.Type}, {"why_flagged", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

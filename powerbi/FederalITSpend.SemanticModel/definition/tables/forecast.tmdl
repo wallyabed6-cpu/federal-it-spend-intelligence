@@ -1,0 +1,87 @@
+table forecast
+	lineageTag: 7f2ea79b-3121-41fb-a7a5-075142d2dddf
+
+	column sector
+		dataType: string
+		lineageTag: 5a911018-b102-4dd6-b10d-92bd2b51f20e
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 30730e3b-4ceb-448b-b15d-4a176af7100a
+		summarizeBy: sum
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 21a1625a-5e63-4b0e-b63d-5867d4cced80
+		summarizeBy: sum
+		sourceColumn: fiscal_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column fy_quarter
+		dataType: string
+		lineageTag: e17b64e5-f2b9-4856-ab89-af3e56f3bd33
+		summarizeBy: none
+		sourceColumn: fy_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column series
+		dataType: string
+		lineageTag: 7e2cb81f-f696-4a29-9fbc-25fd83c0ab17
+		summarizeBy: none
+		sourceColumn: series
+
+		annotation SummarizationSetBy = Automatic
+
+	column obligated_b
+		dataType: double
+		lineageTag: 97804209-d846-4a4a-a27f-067e9295eed7
+		summarizeBy: sum
+		sourceColumn: obligated_b
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lower_80_b
+		dataType: double
+		lineageTag: 2881b673-4e40-497a-a4b4-fe6d3cd32769
+		summarizeBy: sum
+		sourceColumn: lower_80_b
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column upper_80_b
+		dataType: double
+		lineageTag: 97e7187d-f888-442d-89c9-a046930eff84
+		summarizeBy: sum
+		sourceColumn: upper_80_b
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition forecast = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\forecast.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sector", type text}, {"fiscal_year", Int64.Type}, {"fiscal_quarter", Int64.Type}, {"fy_quarter", type text}, {"series", type text}, {"obligated_b", type number}, {"lower_80_b", type number}, {"upper_80_b", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

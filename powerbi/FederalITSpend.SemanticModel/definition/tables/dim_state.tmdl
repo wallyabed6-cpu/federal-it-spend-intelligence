@@ -1,0 +1,38 @@
+table dim_state
+	lineageTag: 06025743-b6ea-4631-abdc-27e090647f1a
+
+	column Column1
+		dataType: string
+		lineageTag: 213ba0f9-9f76-4d77-a2fb-f7c379dd6c5a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column2
+		dataType: string
+		lineageTag: 190d253b-eaa5-42d7-a9b8-ae3c17e05e09
+		summarizeBy: none
+		sourceColumn: Column2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column3
+		dataType: string
+		lineageTag: fb0e142c-e1ff-4537-b333-ad29750bbcc9
+		summarizeBy: none
+		sourceColumn: Column3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_state = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_state.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

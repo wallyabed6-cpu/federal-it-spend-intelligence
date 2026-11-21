@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["fact_awards","dim_agency","dim_award","dim_date","dim_naics","dim_state","dim_vendor","forecast","forecast_backtest"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_awards
+ref table dim_agency
+ref table dim_award
+ref table dim_date
+ref table dim_naics
+ref table dim_state
+ref table dim_vendor
+ref table forecast
+ref table forecast_backtest
+
+ref cultureInfo en-US
+

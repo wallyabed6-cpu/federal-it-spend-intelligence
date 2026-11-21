@@ -1,0 +1,40 @@
+table dim_award
+	lineageTag: c86bf366-951a-48d3-8173-18afee770ec9
+
+	column award_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 13118c6f-e613-431f-b336-4a8cb81819fa
+		summarizeBy: sum
+		sourceColumn: award_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column award_key
+		dataType: string
+		lineageTag: fb5e8dbe-8252-42f7-8681-223c664b7d5c
+		summarizeBy: none
+		sourceColumn: award_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column piid
+		dataType: string
+		lineageTag: dcedea01-5d98-41ea-8504-9f387337a8cf
+		summarizeBy: none
+		sourceColumn: piid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_award = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_award.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"award_id", Int64.Type}, {"award_key", type text}, {"piid", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
