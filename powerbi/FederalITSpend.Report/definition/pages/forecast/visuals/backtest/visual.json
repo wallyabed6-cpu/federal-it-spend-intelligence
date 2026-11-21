@@ -3,9 +3,9 @@
   "name": "backtest",
   "position": {
     "x": 24,
-    "y": 532,
+    "y": 488,
     "z": 3,
-    "height": 168,
+    "height": 212,
     "width": 608,
     "tabOrder": 3
   },
@@ -124,6 +124,19 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
