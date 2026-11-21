@@ -146,7 +146,7 @@ table fact_awards
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\fact_awards.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\fact_awards.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"txn_id", Int64.Type}, {"award_id", Int64.Type}, {"date_key", Int64.Type}, {"agency_key", Int64.Type}, {"vendor_key", Int64.Type}, {"naics_code", Int64.Type}, {"state_code", type text}, {"action_type", type text}, {"extent_competed", type text}, {"obligation", type number}, {"is_new_award", Int64.Type}, {"is_deobligation", Int64.Type}, {"partial_period", Int64.Type}, {"is_anomaly", Int64.Type}, {"anomaly_rank", Int64.Type}, {"why_flagged", type text}})
 				in

@@ -77,7 +77,7 @@ table forecast
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\forecast.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\forecast.csv"),[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sector", type text}, {"fiscal_year", Int64.Type}, {"fiscal_quarter", Int64.Type}, {"fy_quarter", type text}, {"series", type text}, {"obligated_b", type number}, {"lower_80_b", type number}, {"upper_80_b", type number}})
 				in

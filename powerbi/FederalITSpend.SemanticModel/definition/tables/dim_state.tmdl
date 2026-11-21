@@ -1,27 +1,27 @@
 table dim_state
 	lineageTag: 06025743-b6ea-4631-abdc-27e090647f1a
 
-	column Column1
+	column state_code
 		dataType: string
 		lineageTag: 213ba0f9-9f76-4d77-a2fb-f7c379dd6c5a
 		summarizeBy: none
-		sourceColumn: Column1
+		sourceColumn: state_code
 
 		annotation SummarizationSetBy = Automatic
 
-	column Column2
+	column state_name
 		dataType: string
 		lineageTag: 190d253b-eaa5-42d7-a9b8-ae3c17e05e09
 		summarizeBy: none
-		sourceColumn: Column2
+		sourceColumn: state_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column Column3
+	column state_type
 		dataType: string
 		lineageTag: fb0e142c-e1ff-4537-b333-ad29750bbcc9
 		summarizeBy: none
-		sourceColumn: Column3
+		sourceColumn: state_type
 
 		annotation SummarizationSetBy = Automatic
 
@@ -29,8 +29,9 @@ table dim_state
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_state.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}})
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_state.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"state_code", type text}, {"state_name", type text}, {"state_type", type text}})
 				in
 				    #"Changed Type"
 
