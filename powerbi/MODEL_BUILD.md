@@ -40,8 +40,8 @@ Create every measure in `powerbi/measures.dax` exactly as written, with the desc
 
 | Measure | Table | Display folder | Format |
 |---|---|---|---|
-| Total Obligations | fact_awards | Spend | `$#,0.0,,,"B"` |
-| Prior Year Obligations | fact_awards | Spend | `$#,0.0,,,"B"` |
+| Total Obligations | fact_awards | Spend | `\$#,0;(\$#,0);\$#,0` (billions set per visual) |
+| Prior Year Obligations | fact_awards | Spend | `\$#,0;(\$#,0);\$#,0` |
 | YoY Growth % | fact_awards | Spend | `0.0%` |
 | Award Count | fact_awards | Spend | `#,0` |
 | Vendor Share of Agency Spend | fact_awards | Concentration | `0.0%` |
@@ -49,7 +49,7 @@ Create every measure in `powerbi/measures.dax` exactly as written, with the desc
 | HHI Band | fact_awards | Concentration | text |
 | Top 4 Vendor Share | fact_awards | Concentration | `0.0%` |
 | Anomaly Count | fact_awards | Risk | `#,0` |
-| Anomaly Dollars | fact_awards | Risk | `$#,0.0,,"M"` |
+| Anomaly Dollars | fact_awards | Risk | `\$#,0;(\$#,0);\$#,0` |
 | Anomaly Rate | fact_awards | Risk | `0.00%` |
 | Actual ($B) | forecast | Forecast | `$#,0.00"B"` |
 | Forecast ($B) | forecast | Forecast | `$#,0.00"B"` |
@@ -80,3 +80,5 @@ If any check fails, stop and report it. Don't adjust a measure to force the numb
 
 Save in Desktop (Ctrl+S). Then `git add powerbi` and commit with the message
 "Step 7e: relationships, date table, measures".
+
+> Note: the scaled formats (`$#,0.0,,,"B"`) were replaced after page 1 testing. Power BI applied its own display units on top and showed "$262.9 bnB". Dollar measures now use plain currency, and each visual sets display units to billions.

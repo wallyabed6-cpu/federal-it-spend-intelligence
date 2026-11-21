@@ -3,9 +3,9 @@
   "name": "kpi_total",
   "position": {
     "x": 24,
-    "y": 88,
+    "y": 92,
     "z": 1,
-    "height": 104,
+    "height": 112,
     "width": 296,
     "tabOrder": 1
   },
@@ -53,7 +53,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "26D"
+                  "Value": "24D"
                 }
               }
             },
@@ -65,6 +65,20 @@
                       "Value": "'#242424'"
                     }
                   }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
                 }
               }
             }
@@ -86,7 +100,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total obligations, FY2022\u2013FY2026'"
+                  "Value": "'Total, FY2022\u2013FY2026'"
                 }
               }
             }

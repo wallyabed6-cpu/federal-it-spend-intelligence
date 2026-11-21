@@ -4,14 +4,14 @@ table fact_awards
 	/// net obligated dollars: new obligations minus deobligations.
 	/// matches USAspending totals ($262.9B for the whole project).
 	measure 'Total Obligations' = SUM ( fact_awards[obligation] )
-		formatString: $#,0.0,,,"B"
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: Spend
 		lineageTag: 1c910376-2d87-454c-9b7a-d7e28f165d37
 
 	/// same measure one year earlier. works at any date level (year, quarter, month)
 	/// because dim_date is marked as the date table.
 	measure 'Prior Year Obligations' = CALCULATE ( [Total Obligations], SAMEPERIODLASTYEAR ( dim_date[date] ) )
-		formatString: $#,0.0,,,"B"
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: Spend
 		lineageTag: 2d42315c-9449-4c4e-a23c-e6a2150e2ed7
 
@@ -92,7 +92,7 @@ table fact_awards
 
 	/// dollars in flagged transactions
 	measure 'Anomaly Dollars' = CALCULATE ( [Total Obligations], fact_awards[is_anomaly] = 1 )
-		formatString: $#,0.0,,"M"
+		formatString: \$#,0;(\$#,0);\$#,0
 		displayFolder: Risk
 		lineageTag: 8a6990f8-b7af-4eda-aa29-60e8be4b5a73
 
