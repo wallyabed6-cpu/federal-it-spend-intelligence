@@ -1,0 +1,11 @@
+# raw downloads are large and can be re-pulled
+data/raw/
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# power bi local cache (keeps the PBIP diff-friendly)
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf
