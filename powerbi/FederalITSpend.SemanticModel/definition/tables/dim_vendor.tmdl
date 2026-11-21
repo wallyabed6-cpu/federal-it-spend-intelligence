@@ -1,0 +1,50 @@
+table dim_vendor
+	lineageTag: 2ca21c08-76a5-425b-a634-e2db9d0ab879
+
+	column vendor_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 15bdc824-127a-42e9-8345-4f67a23cca94
+		summarizeBy: none
+		sourceColumn: vendor_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendor
+		dataType: string
+		lineageTag: 64ce13dd-81bd-49fb-a61c-3c98eb800c19
+		summarizeBy: none
+		sourceColumn: vendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_uei
+		dataType: string
+		lineageTag: d8075d1f-3914-4de5-b45d-801f1fcad74e
+		summarizeBy: none
+		sourceColumn: parent_uei
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_recipients
+		dataType: int64
+		formatString: 0
+		lineageTag: 91d0dad0-354a-4e47-a702-480eb91416e3
+		summarizeBy: none
+		sourceColumn: n_recipients
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_vendor = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_vendor.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"vendor_key", Int64.Type}, {"vendor", type text}, {"parent_uei", type text}, {"n_recipients", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

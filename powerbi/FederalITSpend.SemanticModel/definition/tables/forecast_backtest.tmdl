@@ -1,0 +1,61 @@
+table forecast_backtest
+	lineageTag: 7d3dff63-5f70-4627-868d-b5a880d7a5c9
+
+	column sector
+		dataType: string
+		lineageTag: d6138769-9a5f-4224-bb07-3a5b5e273c59
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column model
+		dataType: string
+		lineageTag: 1e02c5af-d96c-4520-8f54-fe6be9c9e9dc
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column mae_b
+		dataType: double
+		lineageTag: 3852c074-56e7-45bb-bed9-474373b49b52
+		summarizeBy: none
+		sourceColumn: mae_b
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mape_pct
+		dataType: double
+		lineageTag: 395e8556-d702-4ee8-b151-ad14327f30c9
+		summarizeBy: none
+		sourceColumn: mape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_error_pct
+		dataType: double
+		lineageTag: 6e4f9a96-3a24-4420-8526-5c7ee107b5bc
+		summarizeBy: none
+		sourceColumn: total_error_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition forecast_backtest = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\forecast_backtest.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sector", type text}, {"model", type text}, {"mae_b", type number}, {"mape_pct", type number}, {"total_error_pct", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

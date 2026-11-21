@@ -1,0 +1,100 @@
+table dim_date
+	lineageTag: 0c30348c-0279-4588-9cae-ef8d74f40850
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ed08d0e0-5443-4db8-bc7d-12e6b090e429
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		isUnique
+		formatString: Long Date
+		lineageTag: c2b86ed9-d4bd-434c-b3e7-63f929f22484
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column calendar_year
+		dataType: int64
+		formatString: 0
+		lineageTag: f10cf633-52f8-4a15-b683-b9985999d3ee
+		summarizeBy: none
+		sourceColumn: calendar_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e86d039-37e0-41da-abc0-4b5e616e50b6
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 8ff8602a-0a5b-45fa-a3b8-a2365162db0b
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: fiscal_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 57a00645-f917-47af-b786-d3d4d93b8c2f
+		summarizeBy: none
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: b820aa56-7b0a-4ea1-9dfd-5795f10a32cb
+		summarizeBy: none
+		sourceColumn: fiscal_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_month
+		dataType: int64
+		formatString: 0
+		lineageTag: fbb4e4f1-630c-4171-ae5a-0fa092e38be2
+		summarizeBy: none
+		sourceColumn: fiscal_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fy_quarter
+		dataType: string
+		lineageTag: c1d5de5f-abcf-4bc8-99bc-e75a2dbeb775
+		summarizeBy: none
+		sourceColumn: fy_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\dim_date.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date_key", Int64.Type}, {"date", type date}, {"calendar_year", Int64.Type}, {"month", Int64.Type}, {"month_name", type text}, {"fiscal_year", Int64.Type}, {"fiscal_quarter", Int64.Type}, {"fiscal_month", Int64.Type}, {"fy_quarter", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

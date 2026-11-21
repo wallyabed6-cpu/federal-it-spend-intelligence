@@ -1,0 +1,144 @@
+// measures.dax
+// every DAX measure in the FederalITSpend model, with a short description.
+// this file is the copy kept in git; the live versions are in
+// FederalITSpend.SemanticModel/definition/tables/*.tmdl after the model is built.
+//
+// table the measure lives on is shown as  [table] / display folder
+
+
+// ---------------------------------------------------------------------------
+// fact_awards / Spend
+// ---------------------------------------------------------------------------
+
+// net obligated dollars: new obligations minus deobligations.
+// matches USAspending totals ($262.9B for the whole project).
+Total Obligations =
+SUM ( fact_awards[obligation] )
+
+// same measure one year earlier. works at any date level (year, quarter, month)
+// because dim_date is marked as the date table.
+Prior Year Obligations =
+CALCULATE ( [Total Obligations], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+
+// year-over-year change. careful with FY2026 defense: Q4 is incomplete
+// (DoD publication lag), so FY2026 vs FY2025 understates defense growth.
+YoY Growth % =
+DIVIDE ( [Total Obligations] - [Prior Year Obligations], [Prior Year Obligations] )
+
+// distinct awards (an award plus all its modifications counts once)
+Award Count =
+DISTINCTCOUNT ( fact_awards[award_id] )
+
+
+// ---------------------------------------------------------------------------
+// fact_awards / Concentration
+// ---------------------------------------------------------------------------
+
+// a vendor's slice of the spend in the current filter (e.g. one agency).
+// the denominator ignores the vendor filter, so each vendor row is divided by the agency total.
+Vendor Share of Agency Spend =
+DIVIDE (
+    [Total Obligations],
+    CALCULATE ( [Total Obligations], REMOVEFILTERS ( dim_vendor ) )
+)
+
+// herfindahl-hirschman index: sum of squared vendor market shares (in percent).
+// 10,000 = one vendor gets everything. vendors with zero or negative net dollars
+// are left out, same as sql/05_hhi_by_agency.sql, so the numbers match.
+HHI =
+VAR vendors =
+    FILTER (
+        ADDCOLUMNS ( VALUES ( dim_vendor[vendor_key] ), "@amt", [Total Obligations] ),
+        [@amt] > 0
+    )
+VAR total = SUMX ( vendors, [@amt] )
+RETURN
+    SUMX ( vendors, ( DIVIDE ( [@amt], total ) * 100 ) ^ 2 )
+
+// HHI band from the 2023 DOJ/FTC merger guidelines
+HHI Band =
+VAR h = [HHI]
+RETURN
+    SWITCH (
+        TRUE (),
+        ISBLANK ( h ), BLANK (),
+        h > 1800, "Highly concentrated",
+        h >= 1000, "Moderately concentrated",
+        "Unconcentrated"
+    )
+
+// share of spend held by the 4 biggest vendors (easier to say out loud than HHI)
+Top 4 Vendor Share =
+VAR vendors =
+    FILTER (
+        ADDCOLUMNS ( VALUES ( dim_vendor[vendor_key] ), "@amt", [Total Obligations] ),
+        [@amt] > 0
+    )
+VAR total = SUMX ( vendors, [@amt] )
+VAR top4 = TOPN ( 4, vendors, [@amt], DESC )
+RETURN
+    DIVIDE ( SUMX ( top4, [@amt] ), total )
+
+
+// ---------------------------------------------------------------------------
+// fact_awards / Risk
+// ---------------------------------------------------------------------------
+
+// transactions flagged by the isolation forest (top ~1% most unusual)
+Anomaly Count =
+CALCULATE ( COUNTROWS ( fact_awards ), fact_awards[is_anomaly] = 1 )
+
+// dollars in flagged transactions
+Anomaly Dollars =
+CALCULATE ( [Total Obligations], fact_awards[is_anomaly] = 1 )
+
+// flagged rows as a share of the rows the model scored (actions adding $10K or more)
+Anomaly Rate =
+DIVIDE (
+    [Anomaly Count],
+    CALCULATE ( COUNTROWS ( fact_awards ), fact_awards[obligation] >= 10000 )
+)
+
+
+// ---------------------------------------------------------------------------
+// forecast / Forecast
+// forecast is a standalone quarter-level table with a "series" column:
+//   actual = known quarters, backtest = model forecast for the 4 held-out quarters,
+//   backtest_naive = same-quarter-last-year baseline, forecast = next 4 quarters
+// ---------------------------------------------------------------------------
+
+// known quarterly spend, $ billions
+Actual ($B) =
+CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] = "actual" )
+
+// model line: backtest quarters plus the 4 future quarters, $ billions
+Forecast ($B) =
+CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] IN { "backtest", "forecast" } )
+
+// 80% prediction interval around the model line
+Forecast Lower ($B) =
+CALCULATE ( SUM ( forecast[lower_80_b] ), forecast[series] IN { "backtest", "forecast" } )
+
+Forecast Upper ($B) =
+CALCULATE ( SUM ( forecast[upper_80_b] ), forecast[series] IN { "backtest", "forecast" } )
+
+// forecast vs. actual on the held-out quarters: positive = model was too high
+Forecast vs Actual % =
+VAR a = [Actual ($B)]
+VAR f = CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] = "backtest" )
+RETURN
+    IF ( NOT ISBLANK ( a ) && NOT ISBLANK ( f ), DIVIDE ( f - a, a ) )
+
+// headline backtest error (mean absolute percent error) for the model
+Backtest MAPE =
+DIVIDE (
+    CALCULATE ( AVERAGE ( forecast_backtest[mape_pct] ), forecast_backtest[model] = "Holt-Winters (ETS)" ),
+    100
+)
+
+// same error for the "same quarter last year" baseline, for comparison
+Baseline MAPE =
+DIVIDE (
+    CALCULATE ( AVERAGE ( forecast_backtest[mape_pct] ), forecast_backtest[model] = "Seasonal naive" ),
+    100
+)

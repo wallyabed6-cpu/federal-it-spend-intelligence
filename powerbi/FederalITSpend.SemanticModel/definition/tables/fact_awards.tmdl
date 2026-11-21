@@ -1,0 +1,273 @@
+table fact_awards
+	lineageTag: 5e0f5c54-d4fb-48a9-8acf-630963f187ad
+
+	/// net obligated dollars: new obligations minus deobligations.
+	/// matches USAspending totals ($262.9B for the whole project).
+	measure 'Total Obligations' = SUM ( fact_awards[obligation] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Spend
+		lineageTag: 1c910376-2d87-454c-9b7a-d7e28f165d37
+
+	/// same measure one year earlier. works at any date level (year, quarter, month)
+	/// because dim_date is marked as the date table.
+	measure 'Prior Year Obligations' = CALCULATE ( [Total Obligations], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Spend
+		lineageTag: 2d42315c-9449-4c4e-a23c-e6a2150e2ed7
+
+	/// year-over-year change. careful with FY2026 defense: Q4 is incomplete
+	/// (DoD publication lag), so FY2026 vs FY2025 understates defense growth.
+	measure 'YoY Growth %' = DIVIDE ( [Total Obligations] - [Prior Year Obligations], [Prior Year Obligations] )
+		formatString: 0.0%
+		displayFolder: Spend
+		lineageTag: 0d6ecae1-edf3-4f65-babd-676cda30daea
+
+	/// distinct awards (an award plus all its modifications counts once)
+	measure 'Award Count' = DISTINCTCOUNT ( fact_awards[award_id] )
+		formatString: #,0
+		displayFolder: Spend
+		lineageTag: 2f5d7e74-28d0-4152-84b5-0911e401be85
+
+	/// a vendor's slice of the spend in the current filter (e.g. one agency).
+	/// the denominator ignores the vendor filter, so each vendor row is divided by the agency total.
+	measure 'Vendor Share of Agency Spend' =
+			DIVIDE (
+			    [Total Obligations],
+			    CALCULATE ( [Total Obligations], REMOVEFILTERS ( dim_vendor ) )
+			)
+		formatString: 0.0%
+		displayFolder: Concentration
+		lineageTag: 28c5b4a3-bdfe-458c-bbf6-ffc5f3a0ff85
+
+	/// herfindahl-hirschman index: sum of squared vendor market shares (in percent).
+	/// 10,000 = one vendor gets everything. vendors with zero or negative net dollars
+	/// are left out, same as sql/05_hhi_by_agency.sql, so the numbers match.
+	measure HHI =
+			VAR vendors =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( dim_vendor[vendor_key] ), "@amt", [Total Obligations] ),
+			        [@amt] > 0
+			    )
+			VAR total = SUMX ( vendors, [@amt] )
+			RETURN
+			    SUMX ( vendors, ( DIVIDE ( [@amt], total ) * 100 ) ^ 2 )
+		formatString: #,0
+		displayFolder: Concentration
+		lineageTag: b5722601-f880-408e-9d91-54dcd21951a4
+
+	/// HHI band from the 2023 DOJ/FTC merger guidelines
+	measure 'HHI Band' =
+			VAR h = [HHI]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( h ), BLANK (),
+			        h > 1800, "Highly concentrated",
+			        h >= 1000, "Moderately concentrated",
+			        "Unconcentrated"
+			    )
+		displayFolder: Concentration
+		lineageTag: cce51061-f628-44ea-8b02-2db4da100669
+
+	/// share of spend held by the 4 biggest vendors (easier to say out loud than HHI)
+	measure 'Top 4 Vendor Share' =
+			VAR vendors =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( dim_vendor[vendor_key] ), "@amt", [Total Obligations] ),
+			        [@amt] > 0
+			    )
+			VAR total = SUMX ( vendors, [@amt] )
+			VAR top4 = TOPN ( 4, vendors, [@amt], DESC )
+			RETURN
+			    DIVIDE ( SUMX ( top4, [@amt] ), total )
+		formatString: 0.0%
+		displayFolder: Concentration
+		lineageTag: 67c1cdcd-63cd-4c8c-a4c8-23af0ee93e8a
+
+	/// transactions flagged by the isolation forest (top ~1% most unusual)
+	measure 'Anomaly Count' = CALCULATE ( COUNTROWS ( fact_awards ), fact_awards[is_anomaly] = 1 )
+		formatString: #,0
+		displayFolder: Risk
+		lineageTag: e10a643b-b708-442e-9d87-4d9d703faff3
+
+	/// dollars in flagged transactions
+	measure 'Anomaly Dollars' = CALCULATE ( [Total Obligations], fact_awards[is_anomaly] = 1 )
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Risk
+		lineageTag: 8a6990f8-b7af-4eda-aa29-60e8be4b5a73
+
+	/// flagged rows as a share of the rows the model scored (actions adding $10K or more)
+	measure 'Anomaly Rate' =
+			DIVIDE (
+			    [Anomaly Count],
+			    CALCULATE ( COUNTROWS ( fact_awards ), fact_awards[obligation] >= 10000 )
+			)
+		formatString: 0.00%
+		displayFolder: Risk
+		lineageTag: 5f4eaae2-df39-4d8b-ade4-81047bc662fb
+
+	column txn_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 321a5844-444a-4d1d-b661-fadd30aa5535
+		summarizeBy: none
+		sourceColumn: txn_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column award_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0fbe797d-9ae7-4eae-ad8f-c44ac513986c
+		summarizeBy: none
+		sourceColumn: award_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8214d505-c127-430f-ba74-3f645e999f83
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column agency_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a1e3070a-0cd2-44d0-881f-27a0e3d63f3a
+		summarizeBy: none
+		sourceColumn: agency_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendor_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8521d7c0-d3bf-465d-a43d-41f7dbf9d185
+		summarizeBy: none
+		sourceColumn: vendor_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column naics_code
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 20dbfad9-709e-412a-bf69-c352d61624ed
+		summarizeBy: none
+		sourceColumn: naics_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		isHidden
+		lineageTag: b76d1221-1b12-4d34-a527-c09e941c8b1b
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_type
+		dataType: string
+		lineageTag: e9fe54e0-3f4f-4e0b-b27d-5fb568b1f41c
+		summarizeBy: none
+		sourceColumn: action_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column extent_competed
+		dataType: string
+		lineageTag: 3784f525-7b6b-4ed1-8e95-6b51b2c8f48d
+		summarizeBy: none
+		sourceColumn: extent_competed
+
+		annotation SummarizationSetBy = Automatic
+
+	column obligation
+		dataType: double
+		formatString: $#,0
+		lineageTag: 66e25278-4b08-4aa1-9811-8ff382e086b0
+		summarizeBy: sum
+		sourceColumn: obligation
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_new_award
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c3e13c23-5439-402c-b891-863ebef301cb
+		summarizeBy: none
+		sourceColumn: is_new_award
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_deobligation
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7a9fd138-0471-4230-af91-3bdd8a2ba84e
+		summarizeBy: none
+		sourceColumn: is_deobligation
+
+		annotation SummarizationSetBy = Automatic
+
+	column partial_period
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e768918b-6ca2-48ba-a660-6f618441401d
+		summarizeBy: none
+		sourceColumn: partial_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_anomaly
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6499e120-dc72-4411-acba-2ab218c8cf0d
+		summarizeBy: none
+		sourceColumn: is_anomaly
+
+		annotation SummarizationSetBy = Automatic
+
+	column anomaly_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e1108d3-e2c8-4d9b-9bae-4361c259ddcd
+		summarizeBy: none
+		sourceColumn: anomaly_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column why_flagged
+		dataType: string
+		lineageTag: f14e4294-9deb-488d-924d-c7bd8fced57d
+		summarizeBy: none
+		sourceColumn: why_flagged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_awards = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\wally\federal-it-spend-intelligence\federal-it-spend-intelligence\powerbi\data\fact_awards.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"txn_id", Int64.Type}, {"award_id", Int64.Type}, {"date_key", Int64.Type}, {"agency_key", Int64.Type}, {"vendor_key", Int64.Type}, {"naics_code", Int64.Type}, {"state_code", type text}, {"action_type", type text}, {"extent_competed", type text}, {"obligation", type number}, {"is_new_award", Int64.Type}, {"is_deobligation", Int64.Type}, {"partial_period", Int64.Type}, {"is_anomaly", Int64.Type}, {"anomaly_rank", Int64.Type}, {"why_flagged", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

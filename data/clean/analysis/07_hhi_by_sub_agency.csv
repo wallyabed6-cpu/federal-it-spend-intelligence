@@ -1,0 +1,43 @@
+agency,sub_agency,vendors,obligated_m,hhi,cr4_pct,top_vendor,top_vendor_pct,concentration
+Department of the Treasury,Departmental Offices,44,458.5,5943.0,84.4,LANCER INFORMATION SOLUTIONS,76.9,Highly concentrated
+Department of Defense,Missile Defense Agency,42,2187.8,5904.0,97.2,LOCKHEED MARTIN,74.6,Highly concentrated
+Department of Defense,Defense Advanced Research Projects Agency,27,837.8,5086.0,91.6,SECURIGENCE,70.0,Highly concentrated
+Department of the Treasury,United States Mint,10,294.1,4113.0,98.1,PFSWEB,49.3,Highly concentrated
+Department of Health and Human Services,Agency for Healthcare Research and Quality,30,342.0,2885.0,79.3,WESTAT,49.5,Highly concentrated
+Department of Defense,Defense Threat Reduction Agency,78,684.3,2783.0,85.2,BOOZ ALLEN HAMILTON,48.0,Highly concentrated
+Department of Defense,U.S. Cyber Command,84,629.6,1583.0,72.6,BOOZ ALLEN HAMILTON,27.9,Moderately concentrated
+Department of Health and Human Services,Health Resources and Services Administration,103,1194.0,1041.0,61.6,REI SYSTEMS,17.3,Moderately concentrated
+Department of Defense,Defense Health Agency,498,7247.1,815.0,36.7,LEIDOS,27.0,Unconcentrated
+Department of the Treasury,Bureau of Engraving and Printing,123,504.8,724.0,42.2,DELOITTE,21.8,Unconcentrated
+Department of Defense,Defense Finance and Accounting Service,91,485.7,680.0,44.6,CACI INTERNATIONAL,14.7,Unconcentrated
+Department of Defense,Department of the Navy,1819,18222.9,679.0,34.8,LEIDOS,24.4,Unconcentrated
+General Services Administration,Federal Acquisition Service,606,35429.4,653.0,43.3,BOOZ ALLEN HAMILTON,17.4,Unconcentrated
+Department of Veterans Affairs,Department of Veterans Affairs,1116,39481.3,606.0,40.1,ORACLE,17.2,Unconcentrated
+Department of Defense,USTRANSCOM,116,1177.5,600.0,39.0,UNCOMN,15.1,Unconcentrated
+Department of the Treasury,Office of the Comptroller of the Currency,134,712.5,538.0,38.0,FCN,12.8,Unconcentrated
+Department of Homeland Security,Office of Procurement Operations,310,5449.0,468.0,36.5,CACI INTERNATIONAL,14.2,Unconcentrated
+Department of Health and Human Services,Centers for Disease Control and Prevention,454,3671.5,467.0,34.7,I3 FEDERAL,15.3,Unconcentrated
+Department of Homeland Security,U.S. Customs and Border Protection,301,8704.2,462.0,37.1,SCIENCE APPLICATIONS INTERNATIONAL,10.5,Unconcentrated
+Department of Defense,Defense Human Resources Activity,86,253.9,460.0,33.1,CACI INTERNATIONAL,11.3,Unconcentrated
+Department of Defense,U.S. Special Operations Command,223,2121.2,458.0,32.9,JACOBS ENGINEERING GROUP,16.1,Unconcentrated
+Department of the Treasury,Bureau of the Fiscal Service,371,1891.1,442.0,36.2,DELOITTE,12.6,Unconcentrated
+Department of the Treasury,Internal Revenue Service,526,11857.9,431.0,36.5,FCN,12.1,Unconcentrated
+General Services Administration,Office of Administrative Services,174,882.6,428.0,32.9,VALIANT SOLUTIONS,13.2,Unconcentrated
+Department of Homeland Security,Federal Emergency Management Agency,295,2580.8,424.0,34.3,GENERAL DYNAMICS,12.0,Unconcentrated
+Department of Defense,Defense Counterintelligence and Security Agency,102,683.5,406.0,29.5,OMNI FED,9.0,Unconcentrated
+Department of Health and Human Services,Indian Health Service,239,338.0,391.0,32.6,KONIAG,11.5,Unconcentrated
+Department of Defense,Defense Logistics Agency,377,6541.3,387.0,31.9,ADVANTAGED SOLUTIONS,11.7,Unconcentrated
+Department of Homeland Security,U.S. Coast Guard,365,1638.6,376.0,30.8,SYNERGY BUSINESS INNOVATION AND SOLUTIONS,13.9,Unconcentrated
+Department of Homeland Security,U.S. Secret Service,206,772.2,375.0,28.4,THUNDERCAT TECHNOLOGY,9.4,Unconcentrated
+Department of Health and Human Services,Centers for Medicare and Medicaid Services,233,15866.3,352.0,27.1,GENERAL DYNAMICS,13.5,Unconcentrated
+Department of Homeland Security,Transportation Security Administration,172,2596.9,343.0,27.0,ACCENTURE,11.6,Unconcentrated
+Department of Health and Human Services,Food and Drug Administration,356,3593.7,283.0,25.7,DELOITTE,8.0,Unconcentrated
+Department of Homeland Security,U.S. Immigration and Customs Enforcement,265,3176.3,276.0,23.4,INSERSO,8.3,Unconcentrated
+Department of Health and Human Services,Office of the Assistant Secretary for Administration,284,1201.3,274.0,25.2,DELOITTE,9.9,Unconcentrated
+Department of Health and Human Services,National Institutes of Health,850,8800.7,248.0,24.9,DELOITTE,10.0,Unconcentrated
+Department of Homeland Security,U.S. Citizenship and Immigration Services,192,4396.3,229.0,20.3,GENERAL DYNAMICS,5.6,Unconcentrated
+Department of Defense,Defense Information Systems Agency,542,17141.1,226.0,22.1,MICROSOFT,9.4,Unconcentrated
+Department of Defense,Washington Headquarters Services,299,1775.7,226.0,22.2,HIG CAPITAL MANAGEMENT,7.0,Unconcentrated
+Department of Defense,Department of the Air Force,1611,24863.7,155.0,20.2,SCIENCE APPLICATIONS INTERNATIONAL,6.8,Unconcentrated
+Department of Defense,Department of the Army,1505,19872.2,147.0,15.8,PALANTIR TECHNOLOGIES,5.8,Unconcentrated
+Department of Health and Human Services,Office of the Assistant Secretary for Financial Resources,462,1272.3,132.0,14.2,THUNDERCAT TECHNOLOGY,4.5,Unconcentrated

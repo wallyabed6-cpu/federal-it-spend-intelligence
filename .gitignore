@@ -9,3 +9,6 @@ __pycache__/
 # power bi local cache (keeps the PBIP diff-friendly)
 powerbi/**/.pbi/localSettings.json
 powerbi/**/.pbi/cache.abf
+
+# sqlite database (rebuild with scripts/03_load_db.py)
+data/*.db

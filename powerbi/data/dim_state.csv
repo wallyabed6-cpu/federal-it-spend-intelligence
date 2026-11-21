@@ -1,0 +1,60 @@
+state_code,state_name,state_type
+AE,Armed Forces Europe,overseas military
+AK,Alaska,state
+AL,Alabama,state
+AP,Armed Forces Pacific,overseas military
+AR,Arkansas,state
+AS,American Samoa,territory
+AZ,Arizona,state
+CA,California,state
+CO,Colorado,state
+CT,Connecticut,state
+DC,District of Columbia,dc
+DE,Delaware,state
+FL,Florida,state
+GA,Georgia,state
+GU,Guam,territory
+HI,Hawaii,state
+IA,Iowa,state
+ID,Idaho,state
+IL,Illinois,state
+IN,Indiana,state
+KS,Kansas,state
+KY,Kentucky,state
+LA,Louisiana,state
+MA,Massachusetts,state
+MD,Maryland,state
+ME,Maine,state
+MI,Michigan,state
+MN,Minnesota,state
+MO,Missouri,state
+MP,Northern Mariana Islands,territory
+MS,Mississippi,state
+MT,Montana,state
+NC,North Carolina,state
+ND,North Dakota,state
+NE,Nebraska,state
+NH,New Hampshire,state
+NJ,New Jersey,state
+NM,New Mexico,state
+NV,Nevada,state
+NY,New York,state
+OH,Ohio,state
+OK,Oklahoma,state
+OR,Oregon,state
+PA,Pennsylvania,state
+PR,Puerto Rico,territory
+RI,Rhode Island,state
+SC,South Carolina,state
+SD,South Dakota,state
+TN,Tennessee,state
+TX,Texas,state
+UNK,Unknown,unknown
+UT,Utah,state
+VA,Virginia,state
+VI,U.S. Virgin Islands,territory
+VT,Vermont,state
+WA,Washington,state
+WI,Wisconsin,state
+WV,West Virginia,state
+WY,Wyoming,state
