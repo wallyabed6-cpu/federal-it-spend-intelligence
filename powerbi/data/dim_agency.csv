@@ -1,0 +1,62 @@
+agency_key,agency_code,agency,sub_agency,sector
+1,097,Department of Defense,Defense Advanced Research Projects Agency,Defense
+2,097,Department of Defense,Defense Commissary Agency,Defense
+3,097,Department of Defense,Defense Contract Management Agency,Defense
+4,097,Department of Defense,Defense Counterintelligence and Security Agency,Defense
+5,097,Department of Defense,Defense Finance and Accounting Service,Defense
+6,097,Department of Defense,Defense Health Agency,Defense
+7,097,Department of Defense,Defense Human Resources Activity,Defense
+8,097,Department of Defense,Defense Information Systems Agency,Defense
+9,097,Department of Defense,Defense Logistics Agency,Defense
+10,097,Department of Defense,Defense Media Activity,Defense
+11,097,Department of Defense,Defense Microelectronics Activity,Defense
+12,097,Department of Defense,Defense Threat Reduction Agency,Defense
+13,097,Department of Defense,Department of Defense Education Activity,Defense
+14,097,Department of Defense,Department of the Air Force,Defense
+15,097,Department of Defense,Department of the Army,Defense
+16,097,Department of Defense,Department of the Navy,Defense
+17,097,Department of Defense,Immediate Office of the Secretary of Defense,Defense
+18,097,Department of Defense,Missile Defense Agency,Defense
+19,097,Department of Defense,Office of the Inspector General,Defense
+20,097,Department of Defense,U.S. Cyber Command,Defense
+21,097,Department of Defense,U.S. Special Operations Command,Defense
+22,097,Department of Defense,USTRANSCOM,Defense
+23,097,Department of Defense,Uniformed Services University of the Health Sciences,Defense
+24,097,Department of Defense,Washington Headquarters Services,Defense
+25,075,Department of Health and Human Services,Administration for Children and Families,Civilian
+26,075,Department of Health and Human Services,Agency for Healthcare Research and Quality,Civilian
+27,075,Department of Health and Human Services,Centers for Disease Control and Prevention,Civilian
+28,075,Department of Health and Human Services,Centers for Medicare and Medicaid Services,Civilian
+29,075,Department of Health and Human Services,Food and Drug Administration,Civilian
+30,075,Department of Health and Human Services,Health Resources and Services Administration,Civilian
+31,075,Department of Health and Human Services,Indian Health Service,Civilian
+32,075,Department of Health and Human Services,National Institutes of Health,Civilian
+33,075,Department of Health and Human Services,Office of Assistant Secretary for Preparedness and Response,Civilian
+34,075,Department of Health and Human Services,Office of the Assistant Secretary for Administration,Civilian
+35,075,Department of Health and Human Services,Office of the Assistant Secretary for Financial Resources,Civilian
+36,075,Department of Health and Human Services,Office of the Inspector General,Civilian
+37,075,Department of Health and Human Services,Substance Abuse and Mental Health Services Administration,Civilian
+38,070,Department of Homeland Security,Federal Emergency Management Agency,Civilian
+39,070,Department of Homeland Security,Federal Law Enforcement Training Center,Civilian
+40,070,Department of Homeland Security,Office of Procurement Operations,Civilian
+41,070,Department of Homeland Security,Office of the Inspector General,Civilian
+42,070,Department of Homeland Security,Transportation Security Administration,Civilian
+43,070,Department of Homeland Security,U.S. Citizenship and Immigration Services,Civilian
+44,070,Department of Homeland Security,U.S. Coast Guard,Civilian
+45,070,Department of Homeland Security,U.S. Customs and Border Protection,Civilian
+46,070,Department of Homeland Security,U.S. Immigration and Customs Enforcement,Civilian
+47,070,Department of Homeland Security,U.S. Secret Service,Civilian
+48,036,Department of Veterans Affairs,Department of Veterans Affairs,Civilian
+49,020,Department of the Treasury,Bureau of Engraving and Printing,Civilian
+50,020,Department of the Treasury,Bureau of the Fiscal Service,Civilian
+51,020,Department of the Treasury,Departmental Offices,Civilian
+52,020,Department of the Treasury,Internal Revenue Service,Civilian
+53,020,Department of the Treasury,Office of Inspector General,Civilian
+54,020,Department of the Treasury,Office of the Comptroller of the Currency,Civilian
+55,020,Department of the Treasury,Treasury Common Services Center,Civilian
+56,020,Department of the Treasury,United States Mint,Civilian
+57,047,General Services Administration,Federal Acquisition Service,Civilian
+58,047,General Services Administration,Office of Administrative Services,Civilian
+59,047,General Services Administration,Office of Inspector General,Civilian
+60,047,General Services Administration,Public Buildings Service,Civilian
+61,047,General Services Administration,Technology Transformation Service,Civilian
