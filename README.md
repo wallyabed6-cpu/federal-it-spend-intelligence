@@ -2,6 +2,8 @@
 
 An end-to-end analysis of **$262.9B in federal IT services contract spending** (FY2022–FY2026), built on public USAspending.gov data. It covers market structure, vendor concentration risk, unusual-spending detection and a quarterly spend forecast, and ends in a 5-page Power BI report and a consulting-style findings memo.
 
+**[▶ View the live interactive Power BI report](https://app.powerbi.com/view?r=eyJrIjoiMmUxZTM3ZjMtZDhiMi00YmE1LWExYjgtNGU1NzkyMWZjODc2IiwidCI6IjYwOTU2ODg0LTEwYWQtNDBmYS04NjNkLTRmMzJjMWUzYTM3YSIsImMiOjF9)**
+
 **Stack:** Python (pandas, scikit-learn, statsmodels) · SQL (SQLite, star schema) · Power BI (PBIP/PBIR, DAX)
 
 ## Key results
