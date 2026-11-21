@@ -1,0 +1,24 @@
+rule,action,rows
+rows loaded from raw files,info,383385
+duplicate transaction key,drop,0
+action_date missing or unparseable,drop,0
+fiscal year differs from API value,flag,0
+obligation missing or not a number,drop,0
+negative obligation (deobligation),flag,37481
+zero-dollar action,flag,89609
+blank action_type on original award,fill,118725
+"parent name missing, used recipient name",fill,41
+"vendor name standardized (suffix, punctuation)",fix,347575
+vendor mapped to parent via alias list,fix,26759
+distinct parent names before,info,8901
+distinct vendors after,info,8396
+place of performance state missing,flag,4580
+territory place of performance,flag,422
+overseas military code (AE/AP),flag,38
+type_of_contract_pricing blank,fill,20
+extent_competed blank,fill,30
+product_or_service_code blank,fill,4
+awarding_sub_agency_name blank,fill,0
+number_of_offers_received blank (left blank),flag,129783
+"DoD FY2026 Q4 (publication lag, incomplete)",flag,3392
+rows written to clean file,info,383385
