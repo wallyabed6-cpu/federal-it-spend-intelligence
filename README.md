@@ -72,13 +72,20 @@ Star schema: `fact_awards` (one row per transaction) joined to `dim_date` (marke
 
 ## Report pages
 
-| Page | Screenshot |
-|---|---|
-| 1. Executive overview: KPIs, defense vs civilian trend, agency totals | `docs/screenshots/1_overview.png` *(placeholder)* |
-| 2. Vendors: top 20 (re-ranks by agency), vendor × agency market share grid | `docs/screenshots/2_vendors.png` *(placeholder)* |
-| 3. Map: obligations by state, top 15 states | `docs/screenshots/3_map.png` *(placeholder)* |
-| 4. Risk: HHI by agency and bureau, flagged anomalies with reasons | `docs/screenshots/4_risk.png` *(placeholder)* |
-| 5. Forecast: next 4 quarters with 80% bands, backtest scores | `docs/screenshots/5_forecast.png` *(placeholder)* |
+**1. Executive overview:** KPIs, defense vs civilian quarterly trend, agency totals
+![Executive overview](docs/screenshots/1_overview.png)
+
+**2. Vendors:** top 20 vendors (re-ranks by agency), vendor × agency market share grid
+![Vendors](docs/screenshots/2_vendors.png)
+
+**3. Map:** obligations by place of performance, top 15 states
+![Map](docs/screenshots/3_map.png)
+
+**4. Risk:** HHI by agency and by bureau, flagged anomalies with plain-English reasons
+![Risk](docs/screenshots/4_risk.png)
+
+**5. Forecast:** next 4 quarters with 80% bands, backtest vs. a "same quarter last year" baseline
+![Forecast](docs/screenshots/5_forecast.png)
 
 ## Limitations and validation
 
