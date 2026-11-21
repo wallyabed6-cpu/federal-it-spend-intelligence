@@ -28,7 +28,8 @@
               },
               "queryRef": "dim_vendor.vendor",
               "nativeQueryRef": "vendor",
-              "active": true
+              "active": true,
+              "displayName": "Vendor"
             }
           ]
         },
@@ -42,12 +43,13 @@
                       "Entity": "dim_agency"
                     }
                   },
-                  "Property": "agency"
+                  "Property": "agency_short"
                 }
               },
-              "queryRef": "dim_agency.agency",
-              "nativeQueryRef": "agency",
-              "active": true
+              "queryRef": "dim_agency.agency_short",
+              "nativeQueryRef": "agency_short",
+              "active": true,
+              "displayName": "Agency"
             }
           ]
         },

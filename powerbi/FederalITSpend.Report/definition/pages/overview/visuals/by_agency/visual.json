@@ -23,11 +23,11 @@
                       "Entity": "dim_agency"
                     }
                   },
-                  "Property": "agency"
+                  "Property": "agency_short"
                 }
               },
-              "queryRef": "dim_agency.agency",
-              "nativeQueryRef": "agency",
+              "queryRef": "dim_agency.agency_short",
+              "nativeQueryRef": "agency_short",
               "active": true
             }
           ]
@@ -214,7 +214,7 @@
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "60L"
+                  "Value": "45L"
                 }
               }
             }
@@ -247,6 +247,19 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "totals": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
                   "Value": "true"
                 }
               }
@@ -262,13 +275,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1L"
-                }
-              }
-            },
-            "labelPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'OutsideEnd'"
                 }
               }
             },

@@ -65,7 +65,19 @@ awards = awards.sort_values("award_id")
 save(awards[["award_id", "award_key", "piid"]], "dim_award")
 
 # dimensions, straight from the database
-save(pd.read_sql("SELECT * FROM dim_agency", con), "dim_agency")
+# agency gets a short name too, so charts and grid headers fit (e.g. "HHS")
+agency = pd.read_sql("SELECT * FROM dim_agency", con)
+short_names = {
+    "Department of Defense": "DoD",
+    "Department of Homeland Security": "DHS",
+    "Department of Veterans Affairs": "VA",
+    "Department of Health and Human Services": "HHS",
+    "Department of the Treasury": "Treasury",
+    "General Services Administration": "GSA",
+}
+agency["agency_short"] = agency["agency"].map(short_names)
+print("agencies without a short name:", agency["agency_short"].isna().sum())
+save(agency, "dim_agency")
 save(pd.read_sql("SELECT * FROM dim_vendor", con), "dim_vendor")
 save(pd.read_sql("SELECT * FROM dim_date", con), "dim_date")
 save(pd.read_sql("SELECT * FROM dim_naics", con), "dim_naics")
