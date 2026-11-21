@@ -1,0 +1,121 @@
+agency,rank,vendor,obligated_m,share_of_agency_pct
+Department of Defense,1,LEIDOS,7859.7,7.48
+Department of Defense,2,GENERAL DYNAMICS,3392.4,3.23
+Department of Defense,3,CACI INTERNATIONAL,3190.5,3.03
+Department of Defense,4,SCIENCE APPLICATIONS INTERNATIONAL,2659.9,2.53
+Department of Defense,5,ACCENTURE,2513.4,2.39
+Department of Defense,6,BOOZ ALLEN HAMILTON,2180.5,2.07
+Department of Defense,7,LOCKHEED MARTIN,2178.2,2.07
+Department of Defense,8,MICROSOFT,2097.2,1.99
+Department of Defense,9,NORTHROP GRUMMAN,1547.6,1.47
+Department of Defense,10,VERITAS CAPITAL FUND MANAGEMENT,1477.9,1.41
+Department of Defense,11,PALANTIR TECHNOLOGIES,1395.4,1.33
+Department of Defense,12,WORLD WIDE TECHNOLOGY,1358.3,1.29
+Department of Defense,13,PERATON,1334.5,1.27
+Department of Defense,14,FCN,1297.3,1.23
+Department of Defense,15,DELOITTE,1116.8,1.06
+Department of Defense,16,NEW TECH SOLUTIONS,966.3,0.92
+Department of Defense,17,AMAZON WEB SERVICES,912.8,0.87
+Department of Defense,18,ADVANCED COMPUTER CONCEPTS,780.2,0.74
+Department of Defense,19,ADVANTAGED SOLUTIONS,767.1,0.73
+Department of Defense,20,HIG CAPITAL MANAGEMENT,761.1,0.72
+Department of Health and Human Services,1,GENERAL DYNAMICS,3154.8,8.62
+Department of Health and Human Services,2,DELOITTE,1592.5,4.35
+Department of Health and Human Services,3,BOOZ ALLEN HAMILTON,1384.3,3.78
+Department of Health and Human Services,4,LEIDOS,1262.9,3.45
+Department of Health and Human Services,5,ACCENTURE,962.9,2.63
+Department of Health and Human Services,6,VERITAS CAPITAL FUND MANAGEMENT,758.1,2.07
+Department of Health and Human Services,7,ICF INTERNATIONAL,735.3,2.01
+Department of Health and Human Services,8,SOFTRAMS,685.5,1.87
+Department of Health and Human Services,9,SERCO,601.3,1.64
+Department of Health and Human Services,10,I3 FEDERAL,585.5,1.6
+Department of Health and Human Services,11,SPARKSOFT,506.1,1.38
+Department of Health and Human Services,12,PERATON,445.4,1.22
+Department of Health and Human Services,13,REI SYSTEMS,433.2,1.18
+Department of Health and Human Services,14,SERCO GROUP,422.4,1.15
+Department of Health and Human Services,15,INDEX ANALYTICS,399.0,1.09
+Department of Health and Human Services,16,ELEVANCE HEALTH,388.7,1.06
+Department of Health and Human Services,17,COMPANION DATA SERVICES,386.6,1.06
+Department of Health and Human Services,18,BLUE CROSS AND BLUE SHIELD OF SOUTH CAROLINA,376.6,1.03
+Department of Health and Human Services,19,AXLE INFORMATICS,375.1,1.03
+Department of Health and Human Services,20,PUBLICIS GROUPE S A,307.6,0.84
+Department of Homeland Security,1,CACI INTERNATIONAL,1656.8,5.6
+Department of Homeland Security,2,GENERAL DYNAMICS,1308.4,4.42
+Department of Homeland Security,3,LEIDOS,1111.4,3.76
+Department of Homeland Security,4,SCIENCE APPLICATIONS INTERNATIONAL,911.4,3.08
+Department of Homeland Security,5,ANDURIL INDUSTRIES,829.6,2.8
+Department of Homeland Security,6,DELOITTE,796.2,2.69
+Department of Homeland Security,7,FOUR POINTS TECHNOLOGY,786.4,2.66
+Department of Homeland Security,8,ACCENTURE,785.5,2.66
+Department of Homeland Security,9,VERITAS CAPITAL FUND MANAGEMENT,694.6,2.35
+Department of Homeland Security,10,INTERNATIONAL BUSINESS MACHINES,678.3,2.29
+Department of Homeland Security,11,FCN,632.2,2.14
+Department of Homeland Security,12,DEV TECHNOLOGY GROUP,581.8,1.97
+Department of Homeland Security,13,MANTECH INTERNATIONAL,511.0,1.73
+Department of Homeland Security,14,THUNDERCAT TECHNOLOGY,440.0,1.49
+Department of Homeland Security,15,PANAMERICA COMPUTERS,385.4,1.3
+Department of Homeland Security,16,GOVPLACE,369.8,1.25
+Department of Homeland Security,17,STEAMPUNK,355.5,1.2
+Department of Homeland Security,18,GOVERNMENT ACQUISITIONS,327.6,1.11
+Department of Homeland Security,19,DELL TECHNOLOGIES,273.3,0.92
+Department of Homeland Security,20,INSERSO,262.6,0.89
+Department of Veterans Affairs,1,ORACLE,6793.2,17.21
+Department of Veterans Affairs,2,BOOZ ALLEN HAMILTON,5505.9,13.95
+Department of Veterans Affairs,3,V3GATE,2123.5,5.38
+Department of Veterans Affairs,4,FOUR POINTS TECHNOLOGY,1404.1,3.56
+Department of Veterans Affairs,5,GOVCIO,1344.4,3.41
+Department of Veterans Affairs,6,ACCENTURE,1111.2,2.82
+Department of Veterans Affairs,7,INTERNATIONAL BUSINESS MACHINES,996.1,2.52
+Department of Veterans Affairs,8,MINBURN TECHNOLOGY GROUP,990.2,2.51
+Department of Veterans Affairs,9,GENERAL DYNAMICS,872.2,2.21
+Department of Veterans Affairs,10,THUNDERCAT TECHNOLOGY,855.7,2.17
+Department of Veterans Affairs,11,DELOITTE,773.4,1.96
+Department of Veterans Affairs,12,METGREEN SOLUTIONS,717.0,1.82
+Department of Veterans Affairs,13,TISTA SCIENCE AND TECHNOLOGY,660.1,1.67
+Department of Veterans Affairs,14,VETERANS EZ INFO,633.5,1.6
+Department of Veterans Affairs,15,SOLDIERPOINT DIGITAL HEALTH,529.5,1.34
+Department of Veterans Affairs,16,SCIENCE APPLICATIONS INTERNATIONAL,477.8,1.21
+Department of Veterans Affairs,17,IT CONCEPTS,467.7,1.18
+Department of Veterans Affairs,18,ALVAREZ,441.4,1.12
+Department of Veterans Affairs,19,OCTO CONSULTING GROUP,394.7,1.0
+Department of Veterans Affairs,20,SALIENT CRGT,364.8,0.92
+Department of the Treasury,1,FCN,1809.1,11.46
+Department of the Treasury,2,ACCENTURE,1342.2,8.5
+Department of the Treasury,3,DELOITTE,1264.9,8.01
+Department of the Treasury,4,SCIENCE APPLICATIONS INTERNATIONAL,821.9,5.21
+Department of the Treasury,5,BOOZ ALLEN HAMILTON,698.8,4.43
+Department of the Treasury,6,LANCER INFORMATION SOLUTIONS,578.0,3.66
+Department of the Treasury,7,INTERNATIONAL BUSINESS MACHINES,475.9,3.01
+Department of the Treasury,8,FOUR,342.8,2.17
+Department of the Treasury,9,LEIDOS,213.3,1.35
+Department of the Treasury,10,VERITAS CAPITAL FUND MANAGEMENT,209.8,1.33
+Department of the Treasury,11,MAXIMUS,201.4,1.28
+Department of the Treasury,12,DELL TECHNOLOGIES,164.7,1.04
+Department of the Treasury,13,MAXIMUS FEDERAL SERVICES,154.1,0.98
+Department of the Treasury,14,PFSWEB,145.0,0.92
+Department of the Treasury,15,THUNDERCAT TECHNOLOGY,142.1,0.9
+Department of the Treasury,16,ACCENTURE PUBLIC,135.9,0.86
+Department of the Treasury,17,NANA REGIONAL,127.0,0.8
+Department of the Treasury,18,INTACT TECHNOLOGY,124.9,0.79
+Department of the Treasury,19,PERATON,122.1,0.77
+Department of the Treasury,20,OCTO METRIC,119.3,0.76
+General Services Administration,1,BOOZ ALLEN HAMILTON,6227.4,17.14
+General Services Administration,2,CACI INTERNATIONAL,3782.0,10.41
+General Services Administration,3,GENERAL DYNAMICS,3357.9,9.24
+General Services Administration,4,SCIENCE APPLICATIONS INTERNATIONAL,2019.2,5.56
+General Services Administration,5,DELOITTE,1892.3,5.21
+General Services Administration,6,VERITAS CAPITAL FUND MANAGEMENT,1619.6,4.46
+General Services Administration,7,PERATON,1432.2,3.94
+General Services Administration,8,SALIENT CRGT,1242.0,3.42
+General Services Administration,9,LEIDOS,1187.4,3.27
+General Services Administration,10,MANTECH INTERNATIONAL,859.3,2.36
+General Services Administration,11,PARSONS,622.2,1.71
+General Services Administration,12,GOVERNMENTCIO,559.0,1.54
+General Services Administration,13,ACCENTURE,520.2,1.43
+General Services Administration,14,CGI,405.0,1.11
+General Services Administration,15,INTERNATIONAL BUSINESS MACHINES,398.1,1.1
+General Services Administration,16,CGI FEDERAL,363.1,1.0
+General Services Administration,17,ASGN,362.8,1.0
+General Services Administration,18,SABEL SYSTEMS TECHNOLOGY SOLUTIONS,328.5,0.9
+General Services Administration,19,INNOVATIVE MANAGEMENT CONCEPTS,310.2,0.85
+General Services Administration,20,KBR,299.4,0.82

@@ -8,10 +8,10 @@ negative obligation (deobligation),flag,37481
 zero-dollar action,flag,89609
 blank action_type on original award,fill,118725
 "parent name missing, used recipient name",fill,41
-"vendor name standardized (suffix, punctuation)",fix,347575
-vendor mapped to parent via alias list,fix,26759
+"vendor name standardized (suffix, punctuation)",fix,347458
+vendor mapped to parent via alias list,fix,26876
 distinct parent names before,info,8901
-distinct vendors after,info,8396
+distinct vendors after,info,8394
 place of performance state missing,flag,4580
 territory place of performance,flag,422
 overseas military code (AE/AP),flag,38

@@ -28,7 +28,7 @@ The gap is between two USAspending endpoints (`spending_by_transaction_count` vs
 | 4 | Blank `action_type`. Every one is modification `0`, the original award. | fill "NEW AWARD" | 118,725 |
 | 5 | Parent company name missing | fill with recipient name | 41 |
 | 5 | Vendor name standardized: uppercase, punctuation removed, legal suffixes stripped (INC, LLC, CORP, HOLDINGS, ...) | fix | 347,575 |
-| 5 | Vendor mapped to parent via hand-checked alias list (e.g. VERIZON MARYLAND → VERIZON COMMUNICATIONS, HPI FEDERAL → HP, DELOITTE CONSULTING → DELOITTE) | fix | 26,759 |
+| 5 | Vendor mapped to parent via hand-checked alias list (e.g. VERIZON MARYLAND → VERIZON COMMUNICATIONS, HPI FEDERAL → HP, DELOITTE CONSULTING → DELOITTE, CERNER → ORACLE) | fix | 26,876 |
 | 6 | Place of performance state missing | fill "UNK", flag | 4,580 |
 | 6 | Territory (PR, GU, VI, AS, MP) | flag, keep | 422 |
 | 6 | Overseas military mail code (AE, AP) | flag, keep | 38 |
@@ -37,7 +37,7 @@ The gap is between two USAspending endpoints (`spending_by_transaction_count` vs
 | 8 | Blank `number_of_offers_received` (mostly orders where it isn't reported) | leave blank, flag | 129,783 |
 | 9 | DoD FY2026 Q4 (see below) | flag `partial_period` | 3,392 |
 
-Vendor standardization cut distinct parent names from 8,901 to 8,396.
+Vendor standardization cut distinct parent names from 8,901 to 8,394.
 
 ## Known issues to keep in mind
 
@@ -49,7 +49,12 @@ Vendor standardization cut distinct parent names from 8,901 to 8,396.
 
 **Parent company coverage.** Parent names come from SAM.gov via USAspending, as of each transaction. Limits:
 - Private equity owners can appear as the parent. `VERITAS CAPITAL FUND MANAGEMENT` ($4.9B) rolls up several portfolio companies, while `PERATON` (a Veritas company) also appears on its own. These are left as reported, not merged by hand.
-- Acquisitions are not back-dated. A company bought mid-period shows under its old parent before the deal.
+- Acquisitions are not back-dated, with one exception. Oracle closed its purchase of Cerner in June 2022, and Cerner still appears as its own parent in SAM.gov ($0.56B, mostly VA's electronic health record work). It is mapped to ORACLE because the deal closed in the first year of the window and is material to the VA story. Other acquisitions are left as reported.
+- Private equity owners can also appear as the parent for smaller vendors (e.g. HIG CAPITAL MANAGEMENT at DoD).
 - The alias list only covers name variants found among the larger vendors. Smaller vendors may still have duplicates.
 
 **Deobligations.** Negative amounts are kept so totals match USAspending. A large deobligation can make a vendor's or quarter's net spend look small. Anomaly detection looks at both positive and negative outliers.
+
+**GSA buys for other agencies.** GSA's Federal Acquisition Service (including FEDSIM) awards IT contracts on behalf of other agencies, DoD especially. This project groups spend by *awarding* agency, so GSA's totals and vendor shares partly reflect other agencies' needs. A *funding*-agency view would move some of that spend back to DoD and others.
+
+**VA reports as one sub-agency.** Every VA transaction carries the sub-agency "Department of Veterans Affairs", so VA has no bureau-level breakdown in the sub-agency HHI (`sql/07_hhi_by_sub_agency.sql`).

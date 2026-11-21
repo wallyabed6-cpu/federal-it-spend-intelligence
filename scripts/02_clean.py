@@ -128,6 +128,9 @@ aliases = {
     "PERATON ENTERPRISE SOLUTIONS": "PERATON",
     "PERATON TECHNOLOGY SERVICES": "PERATON",
     "MANTECH ADVANCED SYSTEMS INTERNATIONAL": "MANTECH INTERNATIONAL",
+    # oracle closed its purchase of cerner in june 2022, so cerner rolls up to oracle
+    "CERNER": "ORACLE",
+    "CERNER FEDERAL SOLUTIONS": "ORACLE",
 }
 
 # clean each distinct name once, then map back (much faster than 383k calls)
