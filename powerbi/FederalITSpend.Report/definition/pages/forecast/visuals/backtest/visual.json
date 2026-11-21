@@ -1,0 +1,158 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "backtest",
+  "position": {
+    "x": 24,
+    "y": 532,
+    "z": 3,
+    "height": 168,
+    "width": 608,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_backtest"
+                    }
+                  },
+                  "Property": "sector"
+                }
+              },
+              "queryRef": "forecast_backtest.sector",
+              "nativeQueryRef": "sector",
+              "active": true,
+              "displayName": "Sector"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "forecast_backtest"
+                    }
+                  },
+                  "Property": "model"
+                }
+              },
+              "queryRef": "forecast_backtest.model",
+              "nativeQueryRef": "model",
+              "active": true,
+              "displayName": "Model"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_backtest"
+                        }
+                      },
+                      "Property": "mape_pct"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_backtest.mape_pct)",
+              "nativeQueryRef": "Sum of mape_pct",
+              "displayName": "MAPE %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_backtest"
+                        }
+                      },
+                      "Property": "mae_b"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_backtest.mae_b)",
+              "nativeQueryRef": "Sum of mae_b",
+              "displayName": "MAE ($B)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "forecast_backtest"
+                        }
+                      },
+                      "Property": "total_error_pct"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(forecast_backtest.total_error_pct)",
+              "nativeQueryRef": "Sum of total_error_pct",
+              "displayName": "4-qtr total error %"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Backtest on the last 4 known quarters'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lower is better. Seasonal naive = \"same quarter last year\".'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
