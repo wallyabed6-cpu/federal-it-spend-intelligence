@@ -28,7 +28,6 @@
               },
               "queryRef": "dim_agency.sub_agency",
               "nativeQueryRef": "sub_agency",
-              "active": true,
               "displayName": "Sub-agency"
             },
             {
@@ -44,7 +43,6 @@
               },
               "queryRef": "dim_agency.agency_short",
               "nativeQueryRef": "agency_short",
-              "active": true,
               "displayName": "Agency"
             },
             {
@@ -191,6 +189,26 @@
           },
           "selector": {
             "metadata": "fact_awards.HHI"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]

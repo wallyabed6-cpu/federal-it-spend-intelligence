@@ -397,7 +397,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'FY2025 Q4\u2013FY2026 Q3 forecast = backtest (model never saw those quarters). FY2026 Q4\u2013FY2027 Q3 = forward forecast.'"
+                  "Value": "'FY25 Q4\u2013FY26 Q3 = backtest (unseen quarters). FY26 Q4 onward = forward forecast.'"
                 }
               }
             }

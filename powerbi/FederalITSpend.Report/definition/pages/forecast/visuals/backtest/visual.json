@@ -28,7 +28,6 @@
               },
               "queryRef": "forecast_backtest.sector",
               "nativeQueryRef": "sector",
-              "active": true,
               "displayName": "Sector"
             },
             {
@@ -44,7 +43,6 @@
               },
               "queryRef": "forecast_backtest.model",
               "nativeQueryRef": "model",
-              "active": true,
               "displayName": "Model"
             },
             {
@@ -110,6 +108,28 @@
           ]
         }
       }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

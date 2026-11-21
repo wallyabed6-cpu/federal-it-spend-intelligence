@@ -28,7 +28,6 @@
               },
               "queryRef": "fact_awards.anomaly_rank",
               "nativeQueryRef": "anomaly_rank",
-              "active": true,
               "displayName": "Rank"
             },
             {
@@ -44,7 +43,6 @@
               },
               "queryRef": "dim_date.date",
               "nativeQueryRef": "date",
-              "active": true,
               "displayName": "Date"
             },
             {
@@ -60,7 +58,6 @@
               },
               "queryRef": "dim_agency.agency_short",
               "nativeQueryRef": "agency_short",
-              "active": true,
               "displayName": "Agency"
             },
             {
@@ -76,7 +73,6 @@
               },
               "queryRef": "dim_vendor.vendor",
               "nativeQueryRef": "vendor",
-              "active": true,
               "displayName": "Vendor"
             },
             {
@@ -112,7 +108,6 @@
               },
               "queryRef": "fact_awards.why_flagged",
               "nativeQueryRef": "why_flagged",
-              "active": true,
               "displayName": "Why flagged"
             },
             {
@@ -128,7 +123,6 @@
               },
               "queryRef": "dim_award.piid",
               "nativeQueryRef": "piid",
-              "active": true,
               "displayName": "Contract (PIID)"
             }
           ]
@@ -152,6 +146,28 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
