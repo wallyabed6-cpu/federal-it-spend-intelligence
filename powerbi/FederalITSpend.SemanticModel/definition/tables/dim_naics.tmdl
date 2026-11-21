@@ -5,7 +5,7 @@ table dim_naics
 		dataType: int64
 		formatString: 0
 		lineageTag: 5e9b67bc-202d-45a3-8cc9-ba65528e211f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: naics_code
 
 		annotation SummarizationSetBy = Automatic

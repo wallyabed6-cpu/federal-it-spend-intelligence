@@ -1,17 +1,20 @@
 table dim_date
 	lineageTag: 0c30348c-0279-4588-9cae-ef8d74f40850
+	dataCategory: Time
 
 	column date_key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: ed08d0e0-5443-4db8-bc7d-12e6b090e429
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: date_key
 
 		annotation SummarizationSetBy = Automatic
 
 	column date
 		dataType: dateTime
+		isUnique
 		formatString: Long Date
 		lineageTag: c2b86ed9-d4bd-434c-b3e7-63f929f22484
 		summarizeBy: none
@@ -25,7 +28,7 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: f10cf633-52f8-4a15-b683-b9985999d3ee
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: calendar_year
 
 		annotation SummarizationSetBy = Automatic
@@ -34,7 +37,7 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: 1e86d039-37e0-41da-abc0-4b5e616e50b6
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: month
 
 		annotation SummarizationSetBy = Automatic
@@ -44,6 +47,7 @@ table dim_date
 		lineageTag: 8ff8602a-0a5b-45fa-a3b8-a2365162db0b
 		summarizeBy: none
 		sourceColumn: month_name
+		sortByColumn: fiscal_month
 
 		annotation SummarizationSetBy = Automatic
 
@@ -51,7 +55,7 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: 57a00645-f917-47af-b786-d3d4d93b8c2f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fiscal_year
 
 		annotation SummarizationSetBy = Automatic
@@ -60,7 +64,7 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: b820aa56-7b0a-4ea1-9dfd-5795f10a32cb
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fiscal_quarter
 
 		annotation SummarizationSetBy = Automatic
@@ -69,7 +73,7 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: fbb4e4f1-630c-4171-ae5a-0fa092e38be2
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fiscal_month
 
 		annotation SummarizationSetBy = Automatic

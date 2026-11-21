@@ -11,7 +11,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["fact_awards","dim_agency","dim_award","dim_date","dim_naics","dim_state","dim_vendor","forecast","forecast_backtest"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
 ref table fact_awards
 ref table dim_agency

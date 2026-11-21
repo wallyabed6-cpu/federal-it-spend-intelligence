@@ -4,6 +4,7 @@ table dim_state
 	column state_code
 		dataType: string
 		lineageTag: 213ba0f9-9f76-4d77-a2fb-f7c379dd6c5a
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: state_code
 
@@ -12,6 +13,7 @@ table dim_state
 	column state_name
 		dataType: string
 		lineageTag: 190d253b-eaa5-42d7-a9b8-ae3c17e05e09
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: state_name
 

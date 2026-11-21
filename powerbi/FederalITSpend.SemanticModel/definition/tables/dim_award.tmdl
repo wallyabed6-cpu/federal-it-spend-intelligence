@@ -3,9 +3,10 @@ table dim_award
 
 	column award_id
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 13118c6f-e613-431f-b336-4a8cb81819fa
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: award_id
 
 		annotation SummarizationSetBy = Automatic

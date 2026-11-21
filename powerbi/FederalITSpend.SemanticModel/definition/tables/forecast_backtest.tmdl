@@ -20,7 +20,7 @@ table forecast_backtest
 	column mae_b
 		dataType: double
 		lineageTag: 3852c074-56e7-45bb-bed9-474373b49b52
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: mae_b
 
 		annotation SummarizationSetBy = Automatic
@@ -30,7 +30,7 @@ table forecast_backtest
 	column mape_pct
 		dataType: double
 		lineageTag: 395e8556-d702-4ee8-b151-ad14327f30c9
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: mape_pct
 
 		annotation SummarizationSetBy = Automatic
@@ -40,7 +40,7 @@ table forecast_backtest
 	column total_error_pct
 		dataType: double
 		lineageTag: 6e4f9a96-3a24-4420-8526-5c7ee107b5bc
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: total_error_pct
 
 		annotation SummarizationSetBy = Automatic

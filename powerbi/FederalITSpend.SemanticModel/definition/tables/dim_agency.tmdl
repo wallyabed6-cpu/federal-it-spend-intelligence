@@ -3,9 +3,10 @@ table dim_agency
 
 	column agency_key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 3e9eddb0-8b90-4255-802b-7429f459b699
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: agency_key
 
 		annotation SummarizationSetBy = Automatic
@@ -14,7 +15,7 @@ table dim_agency
 		dataType: int64
 		formatString: 0
 		lineageTag: 86e56b67-9824-4fc5-a4b7-c8586f17a02b
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: agency_code
 
 		annotation SummarizationSetBy = Automatic

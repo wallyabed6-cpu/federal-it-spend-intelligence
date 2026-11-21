@@ -3,9 +3,10 @@ table dim_vendor
 
 	column vendor_key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 15bdc824-127a-42e9-8345-4f67a23cca94
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: vendor_key
 
 		annotation SummarizationSetBy = Automatic
@@ -30,7 +31,7 @@ table dim_vendor
 		dataType: int64
 		formatString: 0
 		lineageTag: 91d0dad0-354a-4e47-a702-480eb91416e3
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: n_recipients
 
 		annotation SummarizationSetBy = Automatic

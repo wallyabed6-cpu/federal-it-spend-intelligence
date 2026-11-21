@@ -1,6 +1,60 @@
 table forecast
 	lineageTag: 7f2ea79b-3121-41fb-a7a5-075142d2dddf
 
+	/// known quarterly spend, $ billions
+	measure 'Actual ($B)' = CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] = "actual" )
+		formatString: $#,0.00"B"
+		displayFolder: Forecast
+		lineageTag: bf632f05-50f2-4d43-a625-74ca49c31221
+
+	/// model line: backtest quarters plus the 4 future quarters, $ billions
+	measure 'Forecast ($B)' = CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] IN { "backtest", "forecast" } )
+		formatString: $#,0.00"B"
+		displayFolder: Forecast
+		lineageTag: 411cb547-5a09-4c32-9720-908d35ea075a
+
+	/// 80% prediction interval around the model line
+	measure 'Forecast Lower ($B)' = CALCULATE ( SUM ( forecast[lower_80_b] ), forecast[series] IN { "backtest", "forecast" } )
+		formatString: $#,0.00"B"
+		displayFolder: Forecast
+		lineageTag: 17576d4f-3181-4d60-aace-7ba23d1b00c4
+
+	/// 80% prediction interval around the model line
+	measure 'Forecast Upper ($B)' = CALCULATE ( SUM ( forecast[upper_80_b] ), forecast[series] IN { "backtest", "forecast" } )
+		formatString: $#,0.00"B"
+		displayFolder: Forecast
+		lineageTag: 8c46be9f-1c6c-4dca-b3c7-81bb2ebe5a98
+
+	/// forecast vs. actual on the held-out quarters: positive = model was too high
+	measure 'Forecast vs Actual %' =
+			VAR a = [Actual ($B)]
+			VAR f = CALCULATE ( SUM ( forecast[obligated_b] ), forecast[series] = "backtest" )
+			RETURN
+			    IF ( NOT ISBLANK ( a ) && NOT ISBLANK ( f ), DIVIDE ( f - a, a ) )
+		formatString: 0.0%
+		displayFolder: Forecast
+		lineageTag: 8b83482c-f120-43c1-88f6-07ab6f1d18bc
+
+	/// headline backtest error (mean absolute percent error) for the model
+	measure 'Backtest MAPE' =
+			DIVIDE (
+			    CALCULATE ( AVERAGE ( forecast_backtest[mape_pct] ), forecast_backtest[model] = "Holt-Winters (ETS)" ),
+			    100
+			)
+		formatString: 0.0%
+		displayFolder: Forecast
+		lineageTag: f489e27b-cff9-4649-b056-74d04da75d3f
+
+	/// same error for the "same quarter last year" baseline, for comparison
+	measure 'Baseline MAPE' =
+			DIVIDE (
+			    CALCULATE ( AVERAGE ( forecast_backtest[mape_pct] ), forecast_backtest[model] = "Seasonal naive" ),
+			    100
+			)
+		formatString: 0.0%
+		displayFolder: Forecast
+		lineageTag: 0d345722-17fe-4027-ba04-3c00b034608d
+
 	column sector
 		dataType: string
 		lineageTag: 5a911018-b102-4dd6-b10d-92bd2b51f20e
@@ -13,7 +67,7 @@ table forecast
 		dataType: int64
 		formatString: 0
 		lineageTag: 30730e3b-4ceb-448b-b15d-4a176af7100a
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fiscal_year
 
 		annotation SummarizationSetBy = Automatic
@@ -22,7 +76,7 @@ table forecast
 		dataType: int64
 		formatString: 0
 		lineageTag: 21a1625a-5e63-4b0e-b63d-5867d4cced80
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: fiscal_quarter
 
 		annotation SummarizationSetBy = Automatic

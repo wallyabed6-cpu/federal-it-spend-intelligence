@@ -1,0 +1,24 @@
+relationship fact_awards_date_key_dim_date_date_key
+	fromColumn: fact_awards.date_key
+	toColumn: dim_date.date_key
+
+relationship fact_awards_agency_key_dim_agency_agency_key
+	fromColumn: fact_awards.agency_key
+	toColumn: dim_agency.agency_key
+
+relationship fact_awards_vendor_key_dim_vendor_vendor_key
+	fromColumn: fact_awards.vendor_key
+	toColumn: dim_vendor.vendor_key
+
+relationship fact_awards_naics_code_dim_naics_naics_code
+	fromColumn: fact_awards.naics_code
+	toColumn: dim_naics.naics_code
+
+relationship fact_awards_state_code_dim_state_state_code
+	fromColumn: fact_awards.state_code
+	toColumn: dim_state.state_code
+
+relationship fact_awards_award_id_dim_award_award_id
+	fromColumn: fact_awards.award_id
+	toColumn: dim_award.award_id
+
