@@ -1,0 +1,5 @@
+sector,model,mae_b,mape_pct,total_error_pct
+Defense,Holt-Winters (ETS),0.893,12.3,-13.5
+Defense,Seasonal naive,0.973,13.6,-14.7
+Civilian,Holt-Winters (ETS),0.752,9.8,2.3
+Civilian,Seasonal naive,1.291,16.0,-1.0
